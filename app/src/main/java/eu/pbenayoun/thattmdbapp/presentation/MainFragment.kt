@@ -1,6 +1,7 @@
 package eu.pbenayoun.thattmdbapp.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +18,7 @@ class MainFragment() : Fragment(R.layout.fragment_main) {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private lateinit var popularMoviesRepositoryViewModel: PopularMoviesRepositoryViewModel
+    private lateinit var popularMoviesViewModel: PopularMoviesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,14 +27,24 @@ class MainFragment() : Fragment(R.layout.fragment_main) {
     ): View? {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         val view = binding.root
-        popularMoviesRepositoryViewModel = ViewModelProvider(this).get(PopularMoviesRepositoryViewModel::class.java)
-        popularMoviesRepositoryViewModel.getPopularMovies()
+        popularMoviesViewModel = ViewModelProvider(this).get(PopularMoviesViewModel::class.java)
+        observePopularMovies()
         return view
     }
 
     override fun onDestroyView() {
         _binding = null
         super.onDestroyView()
+    }
+
+    fun observePopularMovies(){
+        popularMoviesViewModel.popularMovies.observe(viewLifecycleOwner,{
+            popularMovieList->
+            for (tmdbMovie in popularMovieList){
+                Log.d("TMP_DEBUG", "${tmdbMovie.title}: ${tmdbMovie.releaseDate}")
+            }
+        })
+        popularMoviesViewModel.updatePopularMovies()
     }
 
 }
