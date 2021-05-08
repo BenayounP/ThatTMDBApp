@@ -1,9 +1,11 @@
 package eu.pbenayoun.thatdmdbapp.repository.model
 
 
+val TMDBposterPathprefix = "https://image.tmdb.org/t/p/original"
+
 data class TMDBMovie(
     val id: Long,
     val title: String,
-    val posterPath: String,
+    val posterUrl: String,
     val releaseDate: String,
     val userRating:Int=-1)

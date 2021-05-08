@@ -2,6 +2,7 @@ package eu.pbenayoun.thatdmdbapp.repository.remote.retrofit
 
 import com.google.gson.annotations.SerializedName
 import eu.pbenayoun.thatdmdbapp.repository.model.TMDBMovie
+import eu.pbenayoun.thatdmdbapp.repository.model.TMDBposterPathprefix
 
 data class RetrofitMovie(
     @SerializedName("id") val id: Long,
@@ -13,6 +14,6 @@ data class RetrofitMovie(
     @SerializedName("release_date") val releaseDate: String
 ){
     fun mapToTMDBMovie() : TMDBMovie{
-        return TMDBMovie(id,title,posterPath,releaseDate)
+        return TMDBMovie(id,title,TMDBposterPathprefix+posterPath,releaseDate)
     }
 }
