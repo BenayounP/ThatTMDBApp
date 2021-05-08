@@ -1,15 +1,14 @@
-package eu.pbenayoun.thattmdbapp
+package eu.pbenayoun.thattmdbapp.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import eu.pbenayoun.thatdmdbapp.repository.remote.retrofit.RetrofitService
+import dagger.hilt.android.AndroidEntryPoint
+import eu.pbenayoun.thattmdbapp.R
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val retrofitService = RetrofitService()
-        retrofitService.getPopularMovies()
     }
 }

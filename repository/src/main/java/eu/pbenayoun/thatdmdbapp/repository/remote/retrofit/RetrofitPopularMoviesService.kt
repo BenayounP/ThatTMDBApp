@@ -6,11 +6,11 @@ import retrofit2.http.Query
 
 
 
-interface PopularMoviesService {
+interface RetrofitPopularMoviesService {
 
     @GET("movie/popular")
     fun getPopularMovies(
         @Query("api_key") apiKey: String = "b01715618805cb81c6d64d70bb6092a5",
         @Query("page") page: Int
-    ): Call<GetMoviesResponse>
+    ): Call<RetrofitMoviesResponse>
 }

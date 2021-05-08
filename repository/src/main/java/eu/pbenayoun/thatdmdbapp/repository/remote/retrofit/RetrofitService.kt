@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitService {
 
-    private val api: PopularMoviesService
+    private val api: RetrofitPopularMoviesService
 
     init {
         val retrofit = Retrofit.Builder()
@@ -18,30 +18,30 @@ class RetrofitService {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        api = retrofit.create(PopularMoviesService::class.java)
+        api = retrofit.create(RetrofitPopularMoviesService::class.java)
     }
 
 
 
-    fun getPopularMovies(page: Int = 1) {
+    fun getPopularMovies(page: Int) {
         api.getPopularMovies(page = page)
-            .enqueue(object : Callback<GetMoviesResponse> {
+            .enqueue(object : Callback<RetrofitMoviesResponse> {
                 override fun onResponse(
-                    call: Call<GetMoviesResponse>,
-                    response: Response<GetMoviesResponse>
+                    call: Call<RetrofitMoviesResponse>,
+                    response: Response<RetrofitMoviesResponse>
                 ) {
                     if (response.isSuccessful) {
                         val responseBody = response.body()
 
                         if (responseBody != null) {
-                            Log.d("TMP_DEBUG", "Movies: ${responseBody.movies}")
+                            Log.d("TMP_DEBUG", "Movies: ${responseBody.retrofitMovies}")
                         } else {
                             Log.d("TMP_DEBUG", "Failed to get response")
                         }
                     }
                 }
 
-                override fun onFailure(call: Call<GetMoviesResponse>, t: Throwable) {
+                override fun onFailure(call: Call<RetrofitMoviesResponse>, t: Throwable) {
                     Log.e("TMP_DEBUG", "onFailure", t)
                 }
             })

@@ -2,7 +2,7 @@ package eu.pbenayoun.thatdmdbapp.repository.remote.retrofit
 
 import com.google.gson.annotations.SerializedName
 
-data class Movie(
+data class RetrofitMovie(
     @SerializedName("id") val id: Long,
     @SerializedName("title") val title: String,
     @SerializedName("overview") val overview: String,
