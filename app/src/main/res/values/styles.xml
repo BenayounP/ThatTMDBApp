@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- SNACKBAR -->
 
@@ -11,6 +11,16 @@
     <style name="AppTextView" parent="@style/Widget.MaterialComponents.TextView">
         <item name="android:textColor">@color/primary_text_color</item>
     </style>
+
+    <style name="movieTitle" parent="@style/AppTextView">
+        <item name="android:textSize">@dimen/title_size</item>
+    </style>
+
+    <style name="movieReleaseDate" parent="@style/AppTextView">
+        <item name="android:textSize">@dimen/subtitle_size</item>
+    </style>
+
+
 
 
 </resources>

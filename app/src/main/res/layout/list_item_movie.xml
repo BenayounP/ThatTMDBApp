@@ -3,44 +3,46 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginLeft="@dimen/global_margin"
-    android:layout_marginRight="@dimen/global_margin"
+    android:layout_marginLeft="@dimen/global_little_margin"
+    android:layout_marginRight="@dimen/global_little_margin"
     android:layout_marginTop="@dimen/global_little_margin"
     android:layout_marginBottom="@dimen/global_little_margin"
     android:gravity="center_vertical"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/default_background">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/poster"
-        android:layout_height="50dp"
-        android:layout_width="50dp"
-        app:layout_constraintDimensionRatio="1:1"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        app:layout_constraintDimensionRatio="1:1.5"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         />
 
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/movie_item_text_layout_height"
+        app:layout_constraintTop_toBottomOf="@id/poster"
+        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="vertical">
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/poster"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="@dimen/global_little_margin"
-        android:textAppearance="?attr/textAppearanceListItem"
-        android:textColor="@color/colorPrimary"
+        android:maxLines="2"
+        style="@style/movieTitle"
         tools:text="Blade Runner"
         />
 
     <TextView
         android:id="@+id/release_date"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/poster"
-        app:layout_constraintTop_toBottomOf="@id/title"
-        android:layout_marginStart="@dimen/global_little_margin"
-        android:textAppearance="?attr/textAppearanceListItemSecondary"
+        style="@style/movieReleaseDate"
         tools:text="29-09-1976"
         />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

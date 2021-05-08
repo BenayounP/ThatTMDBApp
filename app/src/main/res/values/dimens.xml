@@ -4,5 +4,12 @@
     <dimen name="global_margin">20dp</dimen>
     <dimen name="global_little_margin">10dp</dimen>
 
-    <!-- test size -->_
+    <!-- elements -->
+    <dimen name="movie_item_text_layout_height">75dp</dimen>
+
+    <!-- text size -->
+    <dimen name="title_size">16dp</dimen>
+    <dimen name="subtitle_size">12dp</dimen>
+
+    <integer name="gallery_columns">2</integer>
 </resources>

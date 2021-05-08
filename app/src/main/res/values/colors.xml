@@ -7,7 +7,12 @@
     <color name="colorSecondary">#8BB35F</color>
     <color name="colorSecondaryVariant">#4A8C69</color>
 
+    <color name="default_background">#111111</color>
+
+    <color name="slightly_transparent">#80ffffff</color>
+
     <!-- elements color -->
-    <color name="primary_text_color">@android:color/black</color>
-    <color name="secondary_text_color">@android:color/black</color>
+
+    <color name="primary_text_color">@android:color/white</color>
+    <color name="secondary_text_color">@android:color/white</color>
 </resources>
