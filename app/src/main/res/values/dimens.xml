@@ -6,6 +6,7 @@
 
     <!-- elements -->
     <dimen name="movie_item_text_layout_height">75dp</dimen>
+    <dimen name="star_size">32dp</dimen>
 
     <!-- text size -->
     <dimen name="title_size">16dp</dimen>
