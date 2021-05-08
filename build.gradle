@@ -3,7 +3,7 @@ buildscript {
 
     // sdk
     ext.sdk_version = 30
-    ext.sdk_min_version = 16
+    ext.sdk_min_version = 21
 
     // versions
 
@@ -29,6 +29,9 @@ buildscript {
 
     // model
     ext.room_version = "2.2.6"
+
+    // remote
+    ext.retrofit_version = "2.9.0"
 
     repositories {
         google()
