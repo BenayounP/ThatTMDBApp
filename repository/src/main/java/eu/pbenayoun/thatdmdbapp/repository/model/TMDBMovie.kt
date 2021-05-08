@@ -1,6 +1,5 @@
 package eu.pbenayoun.thatdmdbapp.repository.model
 
-import com.google.gson.annotations.SerializedName
 
 data class TMDBMovie(
     val id: Long,

@@ -19,6 +19,7 @@ class MainFragment() : Fragment(R.layout.fragment_main) {
     private val binding get() = _binding!!
 
     private lateinit var popularMoviesViewModel: PopularMoviesViewModel
+    val popularMoviesAdapter = PopularMoviesAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,6 +29,7 @@ class MainFragment() : Fragment(R.layout.fragment_main) {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         val view = binding.root
         popularMoviesViewModel = ViewModelProvider(this).get(PopularMoviesViewModel::class.java)
+        binding.popularMoviesRecyclerview.adapter = popularMoviesAdapter
         observePopularMovies()
         return view
     }
@@ -40,9 +42,8 @@ class MainFragment() : Fragment(R.layout.fragment_main) {
     fun observePopularMovies(){
         popularMoviesViewModel.popularMovies.observe(viewLifecycleOwner,{
             popularMovieList->
-            for (tmdbMovie in popularMovieList){
-                Log.d("TMP_DEBUG", "${tmdbMovie.title}: ${tmdbMovie.releaseDate}")
-            }
+            Log.d("TMP_DEBUG", "popular movies list change")
+            popularMoviesAdapter.submitList(popularMovieList)
         })
         popularMoviesViewModel.updatePopularMovies()
     }

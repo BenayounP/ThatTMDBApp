@@ -1,16 +1,17 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.ThatTMDBApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.ThatTMDBApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#7a4682</item>
-        <item name="colorPrimaryVariant">#212533</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+        <item name="colorOnPrimary">@color/primary_text_color</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">#8BB35F</item>
-        <item name="colorSecondaryVariant">#4A8C69</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
+        <item name="colorOnSecondary">@color/secondary_text_color</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="snackbarTextViewStyle">@style/AppSnackbarTextView</item>
     </style>
 </resources>

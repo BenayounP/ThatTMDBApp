@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- global -->
+    <dimen name="global_margin">20dp</dimen>
+    <dimen name="global_little_margin">10dp</dimen>
+
+    <!-- test size -->_
+</resources>
