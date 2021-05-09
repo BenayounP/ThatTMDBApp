@@ -8,4 +8,4 @@ data class TMDBMovie(
     val title: String,
     val posterUrl: String,
     val releaseDate: String,
-    val userRating:Int=-1)
+    var userRating:Int=-1)

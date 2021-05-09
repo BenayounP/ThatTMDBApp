@@ -1,6 +1,7 @@
 package eu.pbenayoun.thatdmdbapp.repository
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.pbenayoun.thatdmdbapp.repository.database.room.BestMovieDataBase
@@ -17,7 +18,7 @@ class PopularMoviesRepositoryImpl @Inject constructor(@ApplicationContext contex
 
     override val popularMovies = MutableLiveData<List<TMDBMovie>>()
 
-    override suspend fun updatePopularMovies(){
+    override suspend fun getPopularMovies(){
         val retrofitMovies = retrofitService.getPopularMovies(1)
         if (retrofitMovies.size!=0) {
             retrofitMovies.map {retrofitMovie -> bestMoviesDao.insertMovie(MovieEntity(retrofitMovie.mapToTMDBMovie()))}
@@ -25,4 +26,8 @@ class PopularMoviesRepositoryImpl @Inject constructor(@ApplicationContext contex
         popularMovies.postValue(bestMoviesDao.getAll().map { movieEntity -> movieEntity.mapToTMDBMovie() })
     }
 
+    override suspend fun updateMovie(tmdbMovie: TMDBMovie){
+        Log.d("TMP_DEBUG", "update movie: ${tmdbMovie.title}: ${tmdbMovie.userRating}")
+        bestMoviesDao.update(MovieEntity(tmdbMovie))
+    }
 }

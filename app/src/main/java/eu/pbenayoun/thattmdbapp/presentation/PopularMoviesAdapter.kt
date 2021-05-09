@@ -13,7 +13,7 @@ import eu.pbenayoun.thatdmdbapp.repository.model.TMDBMovie
 import eu.pbenayoun.thattmdbapp.R
 import eu.pbenayoun.thattmdbapp.databinding.ListItemMovieBinding
 
-class PopularMoviesAdapter  :
+class PopularMoviesAdapter(val onRating: (tmdbMovie : TMDBMovie) -> Unit)  :
     ListAdapter<TMDBMovie, RecyclerView.ViewHolder>(MovieDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -26,14 +26,14 @@ class PopularMoviesAdapter  :
         )
     }
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as PopularMovieViewHolder).onBind(getItem(position))
+        (holder as PopularMovieViewHolder).onBind(getItem(position),onRating)
     }
 
     class PopularMovieViewHolder(
         val binding: ListItemMovieBinding
     ) : RecyclerView.ViewHolder(binding.root){
 
-        fun onBind(tmdbMovie: TMDBMovie){
+        fun onBind(tmdbMovie: TMDBMovie, onRating: (tmdbMovie: TMDBMovie) -> Unit){
 
             binding.title.text= tmdbMovie.title
             binding.releaseDate.text= tmdbMovie.releaseDate
@@ -42,17 +42,25 @@ class PopularMoviesAdapter  :
                 .load(tmdbMovie.posterUrl)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(posterView)
-            binding.star1.setOnClickListener { setRating(1) }
-            binding.star2.setOnClickListener { setRating(2) }
-            binding.star3.setOnClickListener { setRating(3) }
-            binding.star4.setOnClickListener { setRating(4) }
-            binding.star5.setOnClickListener { setRating(5) }
+            displayRating(tmdbMovie.userRating)
+
+            binding.star1.setOnClickListener { setRating(1,tmdbMovie,onRating) }
+            binding.star2.setOnClickListener { setRating(2,tmdbMovie,onRating) }
+            binding.star3.setOnClickListener { setRating(3,tmdbMovie,onRating) }
+            binding.star4.setOnClickListener { setRating(4,tmdbMovie,onRating) }
+            binding.star5.setOnClickListener { setRating(5,tmdbMovie,onRating) }
         }
 
-        fun setRating(rating : Int){
+        private fun displayRating(rating: Int){
             for (index in 1..5){
                 setStarView(index,rating)
             }
+        }
+
+        private fun setRating(rating : Int,tmdbMovie: TMDBMovie,onRating: (tmdbMovie: TMDBMovie) -> Unit){
+            displayRating(rating)
+            tmdbMovie.userRating=rating
+            onRating(tmdbMovie)
         }
 
         private fun setStarView(index:Int, rating:Int) {

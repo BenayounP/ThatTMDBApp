@@ -1,10 +1,10 @@
 package eu.pbenayoun.thattmdbapp.presentation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import eu.pbenayoun.thatdmdbapp.repository.PopularMoviesRepository
+import eu.pbenayoun.thatdmdbapp.repository.model.TMDBMovie
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,7 +17,13 @@ class PopularMoviesViewModel @Inject constructor
 
     fun updatePopularMovies(){
         viewModelScope.launch(Dispatchers.IO) {
-            popularMoviesRepository.updatePopularMovies()
+            popularMoviesRepository.getPopularMovies()
+        }
+    }
+
+    fun updateMovie(tmdbMovie: TMDBMovie){
+        viewModelScope.launch(Dispatchers.IO) {
+            popularMoviesRepository.updateMovie(tmdbMovie)
         }
     }
 }

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
+import eu.pbenayoun.thatdmdbapp.repository.model.TMDBMovie
 import eu.pbenayoun.thattmdbapp.R
 import eu.pbenayoun.thattmdbapp.databinding.FragmentMainBinding
 
@@ -19,7 +20,7 @@ class MainFragment() : Fragment(R.layout.fragment_main) {
     private val binding get() = _binding!!
 
     private lateinit var popularMoviesViewModel: PopularMoviesViewModel
-    val popularMoviesAdapter = PopularMoviesAdapter()
+    val popularMoviesAdapter = PopularMoviesAdapter(this::onRating)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,6 +47,10 @@ class MainFragment() : Fragment(R.layout.fragment_main) {
             popularMoviesAdapter.submitList(popularMovieList)
         })
         popularMoviesViewModel.updatePopularMovies()
+    }
+
+    private fun onRating(tmdbMovie: TMDBMovie){
+        popularMoviesViewModel.updateMovie(tmdbMovie)
     }
 
 }

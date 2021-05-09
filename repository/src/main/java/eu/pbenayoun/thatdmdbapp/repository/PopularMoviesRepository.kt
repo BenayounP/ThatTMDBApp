@@ -5,5 +5,6 @@ import eu.pbenayoun.thatdmdbapp.repository.model.TMDBMovie
 
 interface PopularMoviesRepository {
     val popularMovies: LiveData<List<TMDBMovie>>
-    suspend fun updatePopularMovies()
+    suspend fun getPopularMovies()
+    suspend fun updateMovie(tmdbMovie: TMDBMovie)
 }
