@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import eu.pbenayoun.thatdmdbapp.repository.PopularMoviesRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -15,7 +16,7 @@ class PopularMoviesViewModel @Inject constructor
     val popularMovies = popularMoviesRepository.popularMovies
 
     fun updatePopularMovies(){
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             popularMoviesRepository.updatePopularMovies()
         }
     }
