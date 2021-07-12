@@ -15,4 +15,5 @@
 
     <color name="primary_text_color">@android:color/white</color>
     <color name="secondary_text_color">@android:color/white</color>
+    <color name="golden_color">#f3c442</color>
 </resources>

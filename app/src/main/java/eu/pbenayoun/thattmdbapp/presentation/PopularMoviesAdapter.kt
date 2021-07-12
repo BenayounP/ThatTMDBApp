@@ -1,9 +1,10 @@
 package eu.pbenayoun.thattmdbapp.presentation
 
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.core.widget.ImageViewCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -51,36 +52,39 @@ class PopularMoviesAdapter(val onRating: (tmdbMovie : TMDBMovie) -> Unit)  :
             binding.star5.setOnClickListener { setRating(5,tmdbMovie,onRating) }
         }
 
-        private fun displayRating(rating: Int){
-            for (index in 1..5){
-                setStarView(index,rating)
-            }
-        }
-
         private fun setRating(rating : Int,tmdbMovie: TMDBMovie,onRating: (tmdbMovie: TMDBMovie) -> Unit){
             displayRating(rating)
             tmdbMovie.userRating=rating
             onRating(tmdbMovie)
         }
 
-        private fun setStarView(index:Int, rating:Int) {
-            val isRated = rating>=index
-            when(index){
-                1-> setStar(binding.star1,isRated)
-                2-> setStar(binding.star2,isRated)
-                3-> setStar(binding.star3,isRated)
-                4-> setStar(binding.star4,isRated)
-                5-> setStar(binding.star5,isRated)
+        private fun displayRating(rating: Int){
+            for (index in 1..5){
+                setStarView(index,rating)
             }
 
         }
 
-        private fun setStar(imageView: ImageView, isRated: Boolean){
+
+        private fun setStarView(index:Int, rating:Int) {
+            when(index){
+                1-> setStar(binding.star1,index,rating)
+                2-> setStar(binding.star2,index,rating)
+                3-> setStar(binding.star3,index,rating)
+                4-> setStar(binding.star4,index,rating)
+                5-> setStar(binding.star5,index,rating)
+            }
+        }
+
+        private fun setStar(imageView: ImageView, index:Int, rating:Int){
+            val isRated = rating>=index
             val imageResource = when(isRated){
                 false -> R.drawable.ic_star
                 true -> R.drawable.ic_star_rated
             }
             imageView.setImageResource(imageResource)
+            val tintColor = if(isRated && rating==5){ R.color.golden_color}else{R.color.primary_text_color}
+                imageView.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(imageView.context, tintColor)))
         }
     }
 }
